@@ -7,7 +7,9 @@
         </attr>
         <attr name="cardColor" format="color"/>
         <attr name="primaryColor" format="color"/>
-        <attr name="secondaryColor" format="color"/>
+        <attr name="lightTextColor" format="color"/>
+        <attr name="darkTextColor" format="color"/>
+        <attr name="greyTextColor" format="color"/>
         <attr name="mLayoutManager" format="enum">
             <enum name="LINEAR_LAYOUT_MANAGER" value="0"/>
             <enum name="GRID_LAYOUT_MANAGER" value="1"/>

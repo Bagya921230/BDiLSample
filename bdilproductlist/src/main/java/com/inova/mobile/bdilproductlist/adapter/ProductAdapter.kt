@@ -2,17 +2,22 @@ package com.inova.mobile.bdilproductlist.adapter
 
 import android.content.Context
 import android.graphics.Paint
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RatingBar
 import androidx.cardview.widget.CardView
+import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.inova.mobile.bdilproductlist.R
 import com.inova.mobile.bdilproductlist.components.BDiLTextView
 import com.inova.mobile.bdilproductlist.model.AdapterModel
+import com.inova.mobile.bdilproductlist.prefs
 import com.inova.mobile.bdilproductlist.typhography.BDiLTypoStyle
 import java.util.*
 
@@ -34,6 +39,8 @@ class ProductAdapter(
         var rating: RatingBar
         var cardView: CardView
         var productImage: ImageView
+        var buyNowTv: BDiLTextView
+        var btnBgView: CardView
 
         init {
             name = itemView.findViewById<View>(R.id.name) as BDiLTextView
@@ -42,6 +49,8 @@ class ProductAdapter(
             rating = itemView.findViewById<View>(R.id.productRating) as RatingBar
             cardView = itemView.findViewById<View>(R.id.card_view) as CardView
             productImage = itemView.findViewById<View>(R.id.productImg) as ImageView
+            buyNowTv = itemView.findViewById<View>(R.id.buyNowTv) as BDiLTextView
+            btnBgView = itemView.findViewById(R.id.btnBg) as CardView
         }
     }
 
@@ -54,6 +63,8 @@ class ProductAdapter(
         var cardView: CardView
         var productImage: ImageView
         var buyNowTv: BDiLTextView
+        var starImageView: ImageView
+        var btnBgView: View
 
         init {
             name = itemView.findViewById<View>(R.id.name) as BDiLTextView
@@ -63,6 +74,8 @@ class ProductAdapter(
             cardView = itemView.findViewById<View>(R.id.card_view) as CardView
             productImage = itemView.findViewById<View>(R.id.productImg) as ImageView
             buyNowTv = itemView.findViewById<View>(R.id.buyNowTv) as BDiLTextView
+            btnBgView = itemView.findViewById(R.id.btnBg) as View
+            starImageView = itemView.findViewById(R.id.starIcon)
         }
     }
 
@@ -110,6 +123,7 @@ class ProductAdapter(
                 Glide.with(mContext)
                     .load(product.data.image)
                     .into((holder as TypeAViewHolder?)!!.productImage);
+                (holder as TypeAViewHolder?)!!.btnBgView.setCardBackgroundColor(prefs.primaryColorPref)
                 setTypeAFonts(holder)
             }
             AdapterModel.TYPE_B -> {
@@ -120,6 +134,7 @@ class ProductAdapter(
                 Glide.with(mContext)
                     .load(product.data.image)
                     .into((holder as TypeBViewHolder?)!!.productImage);
+                (holder as TypeBViewHolder?)!!.btnBgView.setBackgroundColor(prefs.primaryColorPref)
                 setTypeBFonts(holder)
             }
         }
@@ -130,6 +145,7 @@ class ProductAdapter(
         holder.price.set(mContext, BDiLTypoStyle.REGULAR_GRAY_14)
         holder.regularPrice.set(mContext, BDiLTypoStyle.REGULAR_GRAY_14)
         holder.regularPrice.setPaintFlags(holder.regularPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
+        holder.buyNowTv.set(mContext,BDiLTypoStyle.MEDIUM_WHITE_16)
     }
 
     fun setTypeBFonts(holder: TypeBViewHolder) {
@@ -138,7 +154,8 @@ class ProductAdapter(
         holder.regularPrice.set(mContext, BDiLTypoStyle.REGULAR_GRAY_14)
         holder.rating.set(mContext, BDiLTypoStyle.REGULAR_PRIMARY_10)
         holder.regularPrice.setPaintFlags(holder.regularPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
-        holder.buyNowTv.set(mContext,BDiLTypoStyle.MEDIUM_PRIMARY_16)
+        holder.buyNowTv.set(mContext,BDiLTypoStyle.MEDIUM_WHITE_16)
+        holder.starImageView.setColorFilter(prefs.primaryColorPref, PorterDuff.Mode.SRC_IN)
     }
 
     override fun getItemCount(): Int {

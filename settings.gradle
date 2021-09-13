@@ -1,3 +1,5 @@
+include ':bdilcategorylist'
+include ':app:bdilcategory'
 include ':bdilcarousel'
 include ':bdilproductlist'
 include ':app'

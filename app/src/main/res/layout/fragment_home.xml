@@ -9,52 +9,65 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
         android:background="@color/bgColor"
         tools:context=".ui.home.HomeFragment">
-
-        <ImageView
-            android:id="@+id/logoIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/sample_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <com.inova.mobile.bdilshopify.ui.components.BDiLTextView
             android:id="@+id/shopName"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="OGO"
-            app:layout_constraintBottom_toBottomOf="@+id/logoIcon"
-            app:layout_constraintStart_toEndOf="@+id/logoIcon" />
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="LOGO"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.inova.mobile.bdilshopify.ui.components.BDiLTextView
             android:id="@+id/bestSalesTv"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="184dp"
-            android:text="Best Sales"
+            android:layout_marginTop="150dp"
+            android:text="Best Sellers"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logoIcon" />
+            app:layout_constraintTop_toBottomOf="@+id/shopName" />
+
+<!--        <com.inova.mobile.bdilproductlist.ProductListBasic-->
+<!--            android:id="@+id/productList2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="60dp"-->
+<!--            app:cardColor="@color/colorAccent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/bestSalesTv"-->
+<!--            app:mLayoutDirection="HORIZONTAL"-->
+<!--            app:mLayoutManager="GRID_LAYOUT_MANAGER"-->
+<!--            app:primaryColor="@color/colorPrimary"-->
+<!--            app:lightTextColor="@color/lightTextColor"-->
+<!--            app:darkTextColor="@color/darkTextColor"-->
+<!--            app:greyTextColor="@color/greyTextColor"-->
+<!--            app:viewType="VIEW_B" />-->
 
         <com.inova.mobile.bdilproductlist.ProductListBasic
             android:id="@+id/productList2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="60dp"
             app:cardColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bestSalesTv"
-            app:mLayoutDirection="HORIZONTAL"
-            app:mLayoutManager="GRID_LAYOUT_MANAGER"
+            app:mLayoutDirection="VERTICAL"
+            app:mLayoutManager="LINEAR_LAYOUT_MANAGER"
             app:primaryColor="@color/colorPrimary"
-            app:secondaryColor="@color/colorGray"
-            app:viewType="VIEW_B" />
+            app:lightTextColor="@color/lightTextColor"
+            app:darkTextColor="@color/darkTextColor"
+            app:greyTextColor="@color/greyTextColor"
+            app:viewType="VIEW_A" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

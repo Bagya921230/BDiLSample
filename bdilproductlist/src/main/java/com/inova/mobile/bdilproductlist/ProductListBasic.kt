@@ -1,19 +1,23 @@
 package com.inova.mobile.bdilproductlist
 
 import android.content.Context
-import android.graphics.Typeface
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import androidx.datastore.DataStore
+import androidx.datastore.preferences.Preferences
+import androidx.datastore.preferences.preferencesKey
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inova.mobile.bdilproductlist.adapter.ProductAdapter
 import com.inova.mobile.bdilproductlist.model.AdapterModel
 import com.inova.mobile.bdilproductlist.model.Product
-
+import androidx.datastore.createDataStore
 
 class ProductListBasic : LinearLayout {
+
     /** Core Items */
     private var mContext: Context
     private var attrs: AttributeSet? = null
@@ -29,8 +33,10 @@ class ProductListBasic : LinearLayout {
     var cardColor: Int? = R.color.colorWhite
     var layoutManager: Int? = 0
     var layoutDirection: Int? = 0
-    var primaryColor :Int? = R.color.colorPrimary
-    var secondaryColor :Int? = R.color.colorPrimaryDark
+    var primaryColor :Int? = R.color.colorWhite
+    var lightTextColor :Int? = R.color.colorWhite
+    var darkTextColor: Int? = R.color.colorBlack
+    var greyTextColor: Int? = R.color.colorGray
 
     constructor(context: Context) : super(context) {
         mContext = context
@@ -68,8 +74,15 @@ class ProductListBasic : LinearLayout {
         layoutManager = arr.getInt(R.styleable.ProductListBasic_mLayoutManager, 0)
         cardColor = arr.getColor(R.styleable.ProductListBasic_cardColor, 0)
         primaryColor = arr.getColor(R.styleable.ProductListBasic_primaryColor, 0)
-        secondaryColor = arr.getColor(R.styleable.ProductListBasic_secondaryColor, 0)
+        darkTextColor = arr.getColor(R.styleable.ProductListBasic_darkTextColor, 0)
+        lightTextColor = arr.getColor(R.styleable.ProductListBasic_lightTextColor, 0)
+        greyTextColor = arr.getColor(R.styleable.ProductListBasic_greyTextColor, 0)
 
+        //SET COLOR PREFRENCES
+        prefs.primaryColorPref = primaryColor as Int
+        prefs.darkTextColorPref = darkTextColor as Int
+        prefs.lightTextColorPref = lightTextColor as Int
+        prefs.greyTextColorPref = greyTextColor as Int
 
         productRecyclerView = findViewById<RecyclerView>(R.id.productRv);
         setAdapterSettings(viewType!!)

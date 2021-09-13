@@ -1,4 +1,4 @@
-package com.inova.mobile.bdilcarousel
+package com.inova.mobile.bdilcategorylist
 
 import org.junit.Test
 

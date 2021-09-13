@@ -18,7 +18,7 @@
             android:layout_height="wrap_content">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                card_view:cardCornerRadius="8dp"
+                card_view:cardCornerRadius="0dp"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/productImg"
@@ -90,26 +90,21 @@
                     android:layout_marginLeft="5dp"
                     />
             </LinearLayout>
-            <androidx.cardview.widget.CardView
-                android:visibility="gone"
-                android:layout_margin="5dp"
-                card_view:cardCornerRadius="8dp"
-                card_view:cardElevation="0dp"
-                android:padding="5dp"
-                android:background="@color/colorPrimary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <com.inova.mobile.bdilproductlist.components.BDiLTextView
-                    android:id="@+id/buyNowTv"
-                    android:text="BUY NOW"
-                    android:layout_centerInParent="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/btnBg"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
 
+            <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                android:id="@+id/buyNowTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="BUY" />
+        </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

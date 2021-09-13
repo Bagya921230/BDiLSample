@@ -1,8 +1,11 @@
 package com.inova.mobile.bdilproductlist.typhography
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
+import com.inova.mobile.bdilproductlist.ProductListBasic
 import com.inova.mobile.bdilproductlist.R
+import com.inova.mobile.bdilproductlist.prefs
 import com.inova.mobile.bdilproductlist.typhography.Triplet
 
 //"REGULAR_WHITE_16,
@@ -19,38 +22,40 @@ import com.inova.mobile.bdilproductlist.typhography.Triplet
 
 class BDiLFonts {
 
-    var primaryColor: Int = R.color.colorPrimary
-    var secondaryColor: Int = R.color.colorPrimaryDark
-
     fun setFont(
         context: Context,
         bodaTypogrphyStyle: BDiLTypoStyle?
     ): Triplet<Float, Typeface, Int> {
+        val primaryColor = prefs.primaryColorPref
+        val lightColor = prefs.lightTextColorPref
+        val darkColor = prefs.darkTextColorPref
+        val greyColor = prefs.greyTextColorPref
+
         return when (bodaTypogrphyStyle) {
             BDiLTypoStyle.REGULAR_WHITE_16 -> Triplet<Float, Typeface, Int>(
                 16.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
-                R.color.colorWhite
+                lightColor
             )
             BDiLTypoStyle.REGULAR_GRAY_16 -> Triplet<Float, Typeface, Int>(
                 16.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
-                R.color.colorGray
+                greyColor
             )
             BDiLTypoStyle.REGULAR_BLACK_14 -> Triplet<Float, Typeface, Int>(
                 14.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
-                R.color.colorBlack
+                darkColor
             )
             BDiLTypoStyle.REGULAR_GRAY_14 -> Triplet<Float, Typeface, Int>(
                 14.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
-                R.color.colorGray
+                greyColor
             )
             BDiLTypoStyle.REGULAR_BLACK_12 -> Triplet<Float, Typeface, Int>(
                 12.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
-                R.color.colorBlack
+                darkColor
             )
             BDiLTypoStyle.REGULAR_PRIMARY_10 -> Triplet<Float, Typeface, Int>(
                 12.toFloat(),
@@ -60,7 +65,7 @@ class BDiLFonts {
             BDiLTypoStyle.MEDIUM_BLACK_16 -> Triplet<Float, Typeface, Int>(
                 16.toFloat(),
                 setTypeface(context, "fonts/roboto_medium.ttf"),
-                R.color.colorBlack
+                darkColor
             )
             BDiLTypoStyle.MEDIUM_PRIMARY_14 -> Triplet<Float, Typeface, Int>(
                 14.toFloat(),
@@ -68,14 +73,14 @@ class BDiLFonts {
                 primaryColor
             )
             BDiLTypoStyle.MEDIUM_WHITE_16 -> Triplet<Float, Typeface, Int>(
-                16.toFloat(),
+                14.toFloat(),
                 setTypeface(context, "fonts/roboto_medium.ttf"),
-                R.color.colorWhite
+                lightColor
             )
             BDiLTypoStyle.MEDIUM_BLACK_24 -> Triplet<Float, Typeface, Int>(
                 24.toFloat(),
                 setTypeface(context, "fonts/roboto_medium.ttf"),
-                R.color.colorBlack
+                darkColor
             )
             BDiLTypoStyle.MEDIUM_PRIMARY_16 -> Triplet<Float, Typeface, Int>(
                 16.toFloat(),
@@ -85,7 +90,7 @@ class BDiLFonts {
             else -> Triplet<Float, Typeface, Int>(
                 14.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
-                R.color.colorBlack
+                darkColor
             )
         }
     }

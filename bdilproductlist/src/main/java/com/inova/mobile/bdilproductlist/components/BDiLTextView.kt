@@ -1,7 +1,7 @@
 package com.inova.mobile.bdilproductlist.components
 
+import android.R
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
 import android.text.InputType
@@ -12,6 +12,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.inova.mobile.bdilproductlist.typhography.BDiLFonts
 import com.inova.mobile.bdilproductlist.typhography.BDiLTypoStyle
 import com.inova.mobile.bdilproductlist.typhography.Triplet
+
 
 class BDiLTextView : AppCompatTextView {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -39,7 +40,8 @@ class BDiLTextView : AppCompatTextView {
             BDiLFonts().setFont(context, BDiLTypoStyle.REGULAR_BLACK_14)
         setTextSize(attributes.first)
         setTypeface(attributes.second)
-        setTextColor(ResourcesCompat.getColor(getResources(), attributes.third, null))
+        val color: Int = attributes.third
+        setTextColor(color)
         setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS)
         //setLineSpacing(BDiLTypoStyle.REGULAR_BLACK_14)
         setSingleLine(false)
@@ -51,7 +53,8 @@ class BDiLTextView : AppCompatTextView {
             BDiLFonts().setFont(context!!, bodaTypogrphyStyle)
         setTextSize(attributes.first)
         setTypeface(attributes.second)
-        setTextColor(ResourcesCompat.getColor(getResources(), attributes.third, null))
+        val color: Int = attributes.third
+        setTextColor(color)
         setLineSpacing(bodaTypogrphyStyle)
     }
 

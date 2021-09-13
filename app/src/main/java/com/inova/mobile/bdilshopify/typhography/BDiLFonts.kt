@@ -4,18 +4,11 @@ import android.content.Context
 import android.graphics.Typeface
 import com.inova.mobile.bdilproductlist.R
 
-//"REGULAR_WHITE_16,
-//REGULAR_GRAY_16,
-//REGULAR_BLACK_14,
-//REGULAR_GRAY_14,
-//REGULAR_BLACK_12,
-
-//REGULAR_PRIMARY_10,
-//MEDIUM_BLACK_16,
-//MEDIUM_PRIMARY_14,
-//MEDIUM_WHITE_16,
-//MEDIUM_BLACK_24"
-
+enum class FontType{
+    REGULAR,
+    MEDIUM,
+    BOLD
+}
 class BDiLFonts {
 
     var primaryColor: Int = R.color.colorPrimary
@@ -77,8 +70,8 @@ class BDiLFonts {
                 R.color.colorBlack
             )
             BDiLTypoStyle.MEDIUM_PRIMARY_16 -> Triplet<Float, Typeface, Int>(
-                24.toFloat(),
-                setTypeface(context, "fonts/roboto_medium.ttf"),
+                30.toFloat(),
+                setTypeface(context, "fonts/roboto_bold.ttf"),
                 primaryColor
             )
             else -> Triplet<Float, Typeface, Int>(
@@ -95,5 +88,6 @@ class BDiLFonts {
             path
         )
     }
+
 
 }
