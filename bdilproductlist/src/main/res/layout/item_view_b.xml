@@ -1,0 +1,115 @@
+<androidx.cardview.widget.CardView android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content"
+    card_view:cardElevation="0dp"
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardCornerRadius="8dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                card_view:cardCornerRadius="8dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/productImg"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    />
+                <androidx.cardview.widget.CardView
+                    android:layout_margin="5dp"
+                    android:layout_gravity="right"
+                    card_view:cardCornerRadius="8dp"
+                    card_view:cardElevation="0dp"
+                    android:padding="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                            android:id="@+id/rating"
+                            android:text="3"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <ImageView
+                            android:layout_gravity="center_vertical"
+                            android:id="@+id/starIcon"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/star"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+            <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                android:id="@+id/name"
+                android:text="Product name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                    android:id="@+id/price"
+                    android:text="Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+                <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                    android:id="@+id/regularPrice"
+                    android:text="Regular Price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    />
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:visibility="gone"
+                android:layout_margin="5dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="0dp"
+                android:padding="5dp"
+                android:background="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                    android:id="@+id/buyNowTv"
+                    android:text="BUY NOW"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

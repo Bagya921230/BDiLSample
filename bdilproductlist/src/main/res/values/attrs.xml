@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ProductListBasic">
+        <attr name="viewType" format="enum">
+            <enum name="VIEW_A" value="0"/>
+            <enum name="VIEW_B" value="1"/>
+        </attr>
+        <attr name="cardColor" format="color"/>
+        <attr name="primaryColor" format="color"/>
+        <attr name="secondaryColor" format="color"/>
+        <attr name="mLayoutManager" format="enum">
+            <enum name="LINEAR_LAYOUT_MANAGER" value="0"/>
+            <enum name="GRID_LAYOUT_MANAGER" value="1"/>
+        </attr>
+        <attr name="mLayoutDirection" format="enum">
+            <enum name="VERTICAL" value="0"/>
+            <enum name="HORIZONTAL" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

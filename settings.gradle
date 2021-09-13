@@ -1,0 +1,4 @@
+include ':bdilcarousel'
+include ':bdilproductlist'
+include ':app'
+rootProject.name = "BDiLShopify"
