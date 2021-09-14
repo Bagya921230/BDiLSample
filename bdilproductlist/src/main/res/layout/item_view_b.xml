@@ -94,6 +94,7 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/btnBg"
+            android:clickable="true"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="30dp">

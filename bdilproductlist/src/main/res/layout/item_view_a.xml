@@ -55,6 +55,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp">
                 <androidx.cardview.widget.CardView
+                    android:clickable="true"
                     android:id="@+id/btnBg"
                     android:gravity="center"
                     card_view:cardCornerRadius="8dp"

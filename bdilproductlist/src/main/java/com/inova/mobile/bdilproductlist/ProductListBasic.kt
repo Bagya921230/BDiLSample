@@ -1,29 +1,28 @@
 package com.inova.mobile.bdilproductlist
 
+import android.R.attr
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import androidx.datastore.DataStore
-import androidx.datastore.preferences.Preferences
-import androidx.datastore.preferences.preferencesKey
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inova.mobile.bdilproductlist.adapter.ProductAdapter
+import com.inova.mobile.bdilproductlist.listener.ProductOnClickListener
 import com.inova.mobile.bdilproductlist.model.AdapterModel
 import com.inova.mobile.bdilproductlist.model.Product
-import androidx.datastore.createDataStore
 
-class ProductListBasic : LinearLayout {
+
+class ProductListBasic : LinearLayout,ProductOnClickListener {
 
     /** Core Items */
     private var mContext: Context
     private var attrs: AttributeSet? = null
     private var styleAttr = 0
     private var view: View? = null
-
+    private lateinit var productList: ArrayList<AdapterModel>
     /** Core Components */
     var productRecyclerView: RecyclerView? = null
     var adapter: ProductAdapter? = null
@@ -37,6 +36,7 @@ class ProductListBasic : LinearLayout {
     var lightTextColor :Int? = R.color.colorWhite
     var darkTextColor: Int? = R.color.colorBlack
     var greyTextColor: Int? = R.color.colorGray
+    lateinit var appOnClickListener: ProductOnClickListener
 
     constructor(context: Context) : super(context) {
         mContext = context
@@ -90,13 +90,18 @@ class ProductListBasic : LinearLayout {
         setLinearLayoutDirection(layoutDirection!!)
         productRecyclerView?.adapter = adapter
 
+        check(!context.isRestricted) {
+            ("The android:onClick attribute cannot "
+                    + "be used within a restricted context")
+        }
+
         arr.recycle()
     }
 
     fun setAdapterSettings(itemType: Int) {
         //TODO: Get the list from API
-        val list: ArrayList<AdapterModel> = ArrayList()
-        list.add(
+        productList = ArrayList()
+        productList.add(
             AdapterModel(
                 itemType,
                 Product(
@@ -108,7 +113,7 @@ class ProductListBasic : LinearLayout {
                 )
             )
         )
-        list.add(
+        productList.add(
             AdapterModel(
                 itemType,
                 Product(
@@ -120,7 +125,7 @@ class ProductListBasic : LinearLayout {
                 )
             )
         )
-        list.add(
+        productList.add(
             AdapterModel(
                 itemType,
                 Product(
@@ -132,7 +137,7 @@ class ProductListBasic : LinearLayout {
                 )
             )
         )
-        list.add(
+        productList.add(
             AdapterModel(
                 itemType,
                 Product(
@@ -145,7 +150,7 @@ class ProductListBasic : LinearLayout {
             )
         )
 
-        adapter = ProductAdapter(list, context)
+        adapter = ProductAdapter(productList, context, this)
 
     }
 
@@ -183,6 +188,23 @@ class ProductListBasic : LinearLayout {
                 productRecyclerView?.layoutManager = linearLayoutManager
             }
         }
+    }
+
+    override fun onItemClickListener(data: Product) {
+        if(appOnClickListener != null) {
+            appOnClickListener.onItemClickListener(data)
+        }
+    }
+
+    override fun onBuyClickListener(data: Product) {
+        if(appOnClickListener != null) {
+            appOnClickListener.onBuyClickListener(data)
+        }
+    }
+
+    fun setProductClickListener(listerFromApp: ProductOnClickListener) {
+
+        appOnClickListener = listerFromApp
     }
 
 }

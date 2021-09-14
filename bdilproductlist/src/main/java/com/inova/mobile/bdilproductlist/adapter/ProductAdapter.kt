@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.inova.mobile.bdilproductlist.R
 import com.inova.mobile.bdilproductlist.components.BDiLTextView
+import com.inova.mobile.bdilproductlist.listener.ProductOnClickListener
 import com.inova.mobile.bdilproductlist.model.AdapterModel
 import com.inova.mobile.bdilproductlist.prefs
 import com.inova.mobile.bdilproductlist.typhography.BDiLTypoStyle
@@ -23,7 +24,8 @@ import java.util.*
 
 class ProductAdapter(
     private val dataSet: ArrayList<AdapterModel>,
-    var mContext: Context
+    var mContext: Context,
+    private val productClickListener: ProductOnClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
     var total_types: Int
 
@@ -125,6 +127,12 @@ class ProductAdapter(
                     .into((holder as TypeAViewHolder?)!!.productImage);
                 (holder as TypeAViewHolder?)!!.btnBgView.setCardBackgroundColor(prefs.primaryColorPref)
                 setTypeAFonts(holder)
+                (holder as TypeAViewHolder?)!!.itemView.setOnClickListener {
+                    productClickListener.onItemClickListener(product.data)
+                }
+                (holder as TypeAViewHolder?)!!.btnBgView.setOnClickListener {
+                    productClickListener.onBuyClickListener(product.data)
+                }
             }
             AdapterModel.TYPE_B -> {
                 (holder as TypeBViewHolder?)!!.name.text = product.data.name
@@ -136,6 +144,12 @@ class ProductAdapter(
                     .into((holder as TypeBViewHolder?)!!.productImage);
                 (holder as TypeBViewHolder?)!!.btnBgView.setBackgroundColor(prefs.primaryColorPref)
                 setTypeBFonts(holder)
+                (holder as TypeBViewHolder?)!!.itemView.setOnClickListener {
+                    productClickListener.onItemClickListener(product.data)
+                }
+                (holder as TypeBViewHolder?)!!.btnBgView.setOnClickListener {
+                    productClickListener.onBuyClickListener(product.data)
+                }
             }
         }
     }
