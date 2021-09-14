@@ -4,15 +4,9 @@ import android.content.Context
 import android.graphics.Typeface
 import com.inova.mobile.bdilproductlist.R
 
-enum class FontType{
-    REGULAR,
-    MEDIUM,
-    BOLD
-}
 class BDiLFonts {
 
     var primaryColor: Int = R.color.colorPrimary
-    var secondaryColor: Int = R.color.colorPrimaryDark
 
     fun setFont(
         context: Context,

@@ -33,24 +33,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shopName" />
 
-<!--        <com.inova.mobile.bdilproductlist.ProductListBasic-->
-<!--            android:id="@+id/productList2"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="60dp"-->
-<!--            app:cardColor="@color/colorAccent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/bestSalesTv"-->
-<!--            app:mLayoutDirection="HORIZONTAL"-->
-<!--            app:mLayoutManager="GRID_LAYOUT_MANAGER"-->
-<!--            app:primaryColor="@color/colorPrimary"-->
-<!--            app:lightTextColor="@color/lightTextColor"-->
-<!--            app:darkTextColor="@color/darkTextColor"-->
-<!--            app:greyTextColor="@color/greyTextColor"-->
-<!--            app:viewType="VIEW_B" />-->
-
         <com.inova.mobile.bdilproductlist.ProductListBasic
             android:id="@+id/productList2"
             android:layout_width="match_parent"
@@ -61,13 +43,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bestSalesTv"
-            app:mLayoutDirection="VERTICAL"
-            app:mLayoutManager="LINEAR_LAYOUT_MANAGER"
+            app:mLayoutDirection="HORIZONTAL"
+            app:mLayoutManager="GRID_LAYOUT_MANAGER"
             app:primaryColor="@color/colorPrimary"
             app:lightTextColor="@color/lightTextColor"
             app:darkTextColor="@color/darkTextColor"
             app:greyTextColor="@color/greyTextColor"
-            app:viewType="VIEW_A" />
+            app:viewType="VIEW_B" />
+
+<!--        <com.inova.mobile.bdilproductlist.ProductListBasic-->
+<!--            android:id="@+id/productList2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="60dp"-->
+<!--            app:cardColor="@color/colorAccent"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/bestSalesTv"-->
+<!--            app:mLayoutDirection="VERTICAL"-->
+<!--            app:mLayoutManager="LINEAR_LAYOUT_MANAGER"-->
+<!--            app:primaryColor="@color/colorPrimary"-->
+<!--            app:lightTextColor="@color/lightTextColor"-->
+<!--            app:darkTextColor="@color/darkTextColor"-->
+<!--            app:greyTextColor="@color/greyTextColor"-->
+<!--            app:viewType="VIEW_A" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

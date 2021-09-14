@@ -13,9 +13,6 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/app/bdilcategory" />
-            <option value="$PROJECT_DIR$/bdilcarousel" />
-            <option value="$PROJECT_DIR$/bdilcategorylist" />
             <option value="$PROJECT_DIR$/bdilproductlist" />
           </set>
         </option>

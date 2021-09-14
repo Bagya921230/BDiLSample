@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#ff7052</color>-->
+    <color name="colorPrimary">#ff7052</color>
 
-<!--    <color name="bgColor">#E6E6E6</color>-->
-<!--    <color name="white">#ffffff</color>-->
-
-<!--    <color name="greyTextColor">#8F8F8F</color>-->
-<!--    <color name="darkTextColor">#000000</color>-->
-<!--    <color name="lightTextColor">#ffffff</color>-->
-
-    <color name="colorPrimary">#00BCD4</color>
-
-    <color name="bgColor">#D6E3E4</color>
+    <color name="bgColor">#E6E6E6</color>
     <color name="white">#ffffff</color>
 
-    <color name="greyTextColor">#78858A</color>
-    <color name="darkTextColor">#0278AE</color>
-    <color name="lightTextColor">#FFFFFF</color>
+    <color name="greyTextColor">#8F8F8F</color>
+    <color name="darkTextColor">#000000</color>
+    <color name="lightTextColor">#ffffff</color>
+
+<!--    <color name="colorPrimary">#00BCD4</color>-->
+
+<!--    <color name="bgColor">#D6E3E4</color>-->
+<!--    <color name="white">#ffffff</color>-->
+
+<!--    <color name="greyTextColor">#78858A</color>-->
+<!--    <color name="darkTextColor">#0278AE</color>-->
+<!--    <color name="lightTextColor">#FFFFFF</color>-->
 </resources>
