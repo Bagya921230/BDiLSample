@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.product_details.ProductDetailsFragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/product_details"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.inova.mobile.bdilshopify.ui.components.BDiLTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ksnknsk" />
+
+            <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="kjkjkjkjk nkkk" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/likeContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/likeImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+                    <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_toEndOf="@+id/likeImg"
+                        android:text="hkkkhll" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/commentContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp">
+
+                    <ImageView
+                        android:id="@+id/commentImg"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"/>
+
+                    <com.inova.mobile.bdilproductlist.components.BDiLTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_toEndOf="@+id/commentImg"
+                        android:text="hkkkhll" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toEndOf="@+id/commentContainer" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
