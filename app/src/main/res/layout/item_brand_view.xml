@@ -15,9 +15,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="dra">
+        android:background="@drawable/tag_circle_background">
 
-        <TextView
+        <com.inova.mobile.bdilproductlist.components.BDiLTextView
             android:id="@+id/txtChipName"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

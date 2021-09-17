@@ -3,11 +3,9 @@ package com.inova.mobile.bdilshopify.ui.home
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.DrawableRes
@@ -30,6 +28,7 @@ import com.inova.mobile.bdilshopify.ui.components.CenterZoomLayoutManager
 import com.inova.mobile.bdilshopify.ui.home.adapter.HomeCategoryAdapter
 import com.inova.mobile.bdilshopify.ui.home.adapter.HomePromoAdapter
 import com.inova.mobile.bdilshopify.ui.home.callback.CategoryCallback
+import com.inova.mobile.bdilshopify.ui.product_details.ProductDetailsFragment
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -275,7 +274,11 @@ class HomeFragment : Fragment() ,ProductOnClickListener, CategoryCallback{
     //Product Callbacks
     override fun onItemClickListener(data: Product) {
         Toast.makeText(activity, "Item Clicked", Toast.LENGTH_SHORT).show()
-        navController.navigate(R.id.action_navigation_home_to_navigation_dashboard)
+//        navController.navigate(R.id.action_navigation_home_to_navigation_dashboard)
+
+        val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, ProductDetailsFragment().newInstance(data)!!)
+        fragmentTransaction.commit()
     }
 
     override fun onBuyClickListener(data: Product) {

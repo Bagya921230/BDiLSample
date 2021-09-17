@@ -11,13 +11,13 @@ import com.inova.mobile.bdilshopify.R
 import com.inova.mobile.bdilshopify.model.Category
 import com.inova.mobile.bdilshopify.typhography.BDiLTypoStyle
 import com.inova.mobile.bdilshopify.ui.components.BDiLTextView
-import com.inova.mobile.bdilshopify.ui.home.callback.CategoryCallback
+import com.inova.mobile.bdilshopify.ui.product_details.ProductDetailsFragment
 import java.util.ArrayList
 
-class ProductDetailsAdapter (
+class ProductDetailsAdapter(
     private val dataSet: ArrayList<Category>,
     var mContext: Context,
-    private val categoryCallback: CategoryCallback
+    private val categoryCallback: ProductDetailsFragment
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
 
     class CategoryViewHolder(itemView: View) :
