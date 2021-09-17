@@ -13,6 +13,11 @@ class BDiLFonts {
         bodaTypogrphyStyle: BDiLTypoStyle?
     ): Triplet<Float, Typeface, Int> {
         return when (bodaTypogrphyStyle) {
+            BDiLTypoStyle.REGULAR_WHITE_12 -> Triplet<Float, Typeface, Int>(
+                12.toFloat(),
+                setTypeface(context, "fonts/roboto_regular.ttf"),
+                R.color.colorWhite
+            )
             BDiLTypoStyle.REGULAR_WHITE_16 -> Triplet<Float, Typeface, Int>(
                 16.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
@@ -28,6 +33,11 @@ class BDiLFonts {
                 setTypeface(context, "fonts/roboto_regular.ttf"),
                 R.color.colorBlack
             )
+            BDiLTypoStyle.REGULAR_BLACK_16 -> Triplet<Float, Typeface, Int>(
+                16.toFloat(),
+                setTypeface(context, "fonts/roboto_regular.ttf"),
+                R.color.colorBlack
+            )
             BDiLTypoStyle.REGULAR_GRAY_14 -> Triplet<Float, Typeface, Int>(
                 14.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
@@ -38,8 +48,8 @@ class BDiLFonts {
                 setTypeface(context, "fonts/roboto_regular.ttf"),
                 R.color.colorBlack
             )
-            BDiLTypoStyle.REGULAR_PRIMARY_10 -> Triplet<Float, Typeface, Int>(
-                10.toFloat(),
+            BDiLTypoStyle.REGULAR_PRIMARY_12 -> Triplet<Float, Typeface, Int>(
+                12.toFloat(),
                 setTypeface(context, "fonts/roboto_regular.ttf"),
                 primaryColor
             )

@@ -2,15 +2,11 @@ package com.inova.mobile.bdilshopify.ui.home
 
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -26,41 +22,22 @@ import com.inova.mobile.bdilshopify.model.Category
 import com.inova.mobile.bdilshopify.model.Promo
 import com.inova.mobile.bdilshopify.typhography.BDiLTypoStyle
 import com.inova.mobile.bdilshopify.ui.components.BDiLTextView
-import com.inova.mobile.bdilshopify.ui.components.CenterZoomLayoutManager
+import com.inova.mobile.bdilshopify.ui.components.CircularRecyclerView.CenterZoomLayoutManager
 import com.inova.mobile.bdilshopify.ui.home.adapter.HomeCategoryAdapter
 import com.inova.mobile.bdilshopify.ui.home.adapter.HomePromoAdapter
 import com.inova.mobile.bdilshopify.ui.home.callback.CategoryCallback
-import java.util.*
 import kotlin.collections.ArrayList
-
-
-data class Item(
-    val title: String,
-    @DrawableRes val icon: Int
-)
 
 class HomeFragment : Fragment() ,ProductOnClickListener, CategoryCallback{
 
-    lateinit var productList: ProductListBasic
-    lateinit var shopNameTv: BDiLTextView
-    lateinit var bestSalesTv: BDiLTextView
-    lateinit var logoIcon: ImageView
-    lateinit var categoryRv: RecyclerView
-    lateinit var promoRv: RecyclerView
+    private lateinit var productList: ProductListBasic
+    private lateinit var shopNameTv: BDiLTextView
+    private lateinit var logoIcon: ImageView
+    private lateinit var categoryRv: RecyclerView
+    private lateinit var promoRv: RecyclerView
     private lateinit var homeViewModel: HomeViewModel
-    lateinit var navController: NavController
-
-    //---
-    val duration: Int = 10
-    val pixelsToMove = 30
-    private val mHandler: Handler = Handler(Looper.getMainLooper())
-    private val SCROLLING_RUNNABLE: Runnable = object : Runnable {
-        override fun run() {
-            promoRv.smoothScrollBy(pixelsToMove, 0)
-            mHandler.postDelayed(this, duration.toLong())
-        }
-    }
-    //
+    private lateinit var navController: NavController
+    private lateinit var onScrollListener: OnScrollListener
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,19 +66,19 @@ class HomeFragment : Fragment() ,ProductOnClickListener, CategoryCallback{
     }
 
     fun configureCategories() {
-        var categoryList = ArrayList<Category>()
+        val categoryList = ArrayList<Category>()
         categoryList.add(
             Category(
                 "Dresses",
                 "https://image.freepik.com/free-photo/smiling-beautiful-young-woman-pink-mini-dress-posing-studio_155003-14602.jpg"
             )
-        );
+        )
         categoryList.add(
             Category(
                 "Jeans",
                 "https://img.freepik.com/free-photo/barefoot-legs-female-group-jeans_23-2148206850.jpg?size=338&ext=jpg"
             )
-        );
+        )
         categoryList.add(
             Category(
                 "Jackets",
@@ -112,14 +89,14 @@ class HomeFragment : Fragment() ,ProductOnClickListener, CategoryCallback{
         val linearLayoutManager =
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-        categoryRv?.layoutManager = linearLayoutManager
-        var adapter = HomeCategoryAdapter(categoryList, requireActivity(), this)
+        categoryRv.layoutManager = linearLayoutManager
+        val adapter = HomeCategoryAdapter(categoryList, requireActivity(), this)
         categoryRv.adapter = adapter
 
     }
 
     fun configurePromos() {
-        var promoList = ArrayList<Promo>()
+        val promoList = ArrayList<Promo>()
         promoList.add(
                 Promo(
                     "SALE",
@@ -141,130 +118,39 @@ class HomeFragment : Fragment() ,ProductOnClickListener, CategoryCallback{
                 "https://image.freepik.com/free-vector/new-season-banner-template_1361-1221.jpg"
             )
         )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/fashion-store-banner-template_1361-1248.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/modern-black-friday-sale-banner-template-with-3d-background-red-splash_1361-1877.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-psd/full-shot-winter-season-sale-mock-up_23-2148319682.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/new-season-banner-template_1361-1221.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/fashion-store-banner-template_1361-1248.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/modern-black-friday-sale-banner-template-with-3d-background-red-splash_1361-1877.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-psd/full-shot-winter-season-sale-mock-up_23-2148319682.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/new-season-banner-template_1361-1221.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/fashion-store-banner-template_1361-1248.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/modern-black-friday-sale-banner-template-with-3d-background-red-splash_1361-1877.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-psd/full-shot-winter-season-sale-mock-up_23-2148319682.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/new-season-banner-template_1361-1221.jpg"
-            )
-        )
-        promoList.add(
-            Promo(
-                "SALE",
-                "30% Off",
-                "https://image.freepik.com/free-vector/fashion-store-banner-template_1361-1248.jpg"
-            )
-        )
 
 
         val layoutManager =
             CenterZoomLayoutManager(requireActivity(), 0.9f, 0.09f)
 
-        promoRv?.layoutManager = layoutManager
-        var adapter = HomePromoAdapter(promoList, requireActivity(), this)
+        promoRv.layoutManager = layoutManager
+        val adapter = HomePromoAdapter(promoList, requireActivity(), this)
         promoRv.adapter = adapter
-        adapter.notifyDataSetChanged()
-        promoRv.scrollToPosition(1)
-
 
         PagerSnapHelper().attachToRecyclerView(promoRv)
 
-        val timer = Timer()
-        timer.schedule(object : TimerTask() {
-            override fun run() {
-                if (layoutManager.findLastCompletelyVisibleItemPosition() < adapter.itemCount - 1) {
-                    layoutManager.smoothScrollToPosition(
-                        promoRv,
-                        RecyclerView.State(),
-                        layoutManager.findLastCompletelyVisibleItemPosition() + 1
-                    )
-                } else if (layoutManager.findLastCompletelyVisibleItemPosition() === adapter.itemCount - 1) {
-                    layoutManager.smoothScrollToPosition(
-                        promoRv,
-                        RecyclerView.State(),
-                        0
-                    )
+        /* AUTO SCROLL
+        promoRv.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val firstItemVisible: Int = layoutManager.findFirstVisibleItemPosition()
+                if (firstItemVisible != 0 && firstItemVisible % promoList.size === 0) {
+                    recyclerView.layoutManager!!.scrollToPosition(0)
                 }
             }
-        }, 0, 4000)
 
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            }
+        })
+        val handler = Handler()
+        val runnable: Runnable = object : Runnable {
+            override fun run() {
+                promoRv.scrollBy(2, 0)
+                handler.postDelayed(this, 0)
+            }
+        }
+        handler.postDelayed(runnable, 2000)
+        */
     }
 
 
@@ -285,5 +171,29 @@ class HomeFragment : Fragment() ,ProductOnClickListener, CategoryCallback{
     //Category Callbacks
     override fun onCategoryClick(data: Category) {
         TODO("Not yet implemented")
+    }
+
+    //Promo slider scroll lister
+    class OnScrollListener(
+        val itemCount: Int,
+        val layoutManager: LinearLayoutManager,
+        val stateChanged: (Int) -> Unit) : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val firstItemVisible = layoutManager.findFirstVisibleItemPosition()
+
+            if (firstItemVisible > 0 && firstItemVisible % (itemCount - 1) == 0) {
+                // When position reaches end of the list, it should go back to the beginning
+                recyclerView?.scrollToPosition(1)
+            } else if (firstItemVisible == 0) {
+                // When position reaches beginning of the list, it should go back to the end
+                recyclerView?.scrollToPosition(itemCount - 1)
+            }
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            stateChanged(newState)
+        }
     }
 }

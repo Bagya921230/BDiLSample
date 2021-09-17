@@ -1,11 +1,9 @@
-package com.inova.mobile.bdilshopify.ui.components
+package com.inova.mobile.bdilshopify.ui.components.CircularRecyclerView
 
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 
 
 class CenterZoomLayoutManager(

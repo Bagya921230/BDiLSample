@@ -48,8 +48,9 @@ class HomePromoAdapter(
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, listPosition: Int) {
+        val positionInList: Int = listPosition % dataSet.size
 
-        val promo = dataSet[listPosition]
+        val promo = dataSet[positionInList]
         (holder as PromoViewHolder?)!!.title.text = promo.title
         (holder as PromoViewHolder?)!!.description.text = promo.description
         Glide.with(mContext)
@@ -63,8 +64,8 @@ class HomePromoAdapter(
         holder.description.set(mContext, BDiLTypoStyle.REGULAR_WHITE_16)
     }
 
-    override fun getItemCount(): Int {
-        return dataSet.size
-    }
+    override fun getItemCount() = dataSet.size * 3
+
+    fun getListSize() = dataSet.size
 
 }

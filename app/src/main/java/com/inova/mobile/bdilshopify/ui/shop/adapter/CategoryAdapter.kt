@@ -1,11 +1,10 @@
-package com.inova.mobile.bdilshopify.ui.home.adapter
+package com.inova.mobile.bdilshopify.ui.shop.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.inova.mobile.bdilshopify.R
@@ -15,7 +14,7 @@ import com.inova.mobile.bdilshopify.ui.components.BDiLTextView
 import com.inova.mobile.bdilshopify.ui.home.callback.CategoryCallback
 import java.util.ArrayList
 
-class HomeCategoryAdapter(
+class CategoryAdapter(
     private val dataSet: ArrayList<Category>,
     var mContext: Context,
     private val categoryCallback: CategoryCallback
@@ -24,11 +23,9 @@ class HomeCategoryAdapter(
     class CategoryViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
         var name: BDiLTextView
-        var categoryImage: ImageView
 
         init {
             name = itemView.findViewById<View>(R.id.categoryName) as BDiLTextView
-            categoryImage = itemView.findViewById<View>(R.id.categoryImage) as ImageView
         }
     }
 
@@ -38,7 +35,7 @@ class HomeCategoryAdapter(
     ): RecyclerView.ViewHolder {
         val view: View
         view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.home_category_item_view, parent, false)
+            .inflate(R.layout.category_item_view, parent, false)
         return CategoryViewHolder(view)
     }
 
@@ -46,19 +43,16 @@ class HomeCategoryAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, listPosition: Int) {
 
         val category = dataSet[listPosition]
-
         (holder as CategoryViewHolder?)!!.name.text = category.name
-        Glide.with(mContext)
-            .load(category.image)
-            .into((holder as CategoryViewHolder?)!!.categoryImage);
         configureLabels(holder)
     }
 
     fun configureLabels(holder: CategoryViewHolder) {
-        holder.name.set(mContext, BDiLTypoStyle.REGULAR_WHITE_12)
+        holder.name.set(mContext, BDiLTypoStyle.REGULAR_BLACK_16)
     }
 
     override fun getItemCount(): Int {
         return dataSet.size
     }
+
 }
