@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.inova.mobile.bdilshopify.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="com.inova.mobile.bdilshopify.ui.shop.CategoryFragment"
+        android:label="@string/title_shop"
+        tools:layout="@layout/fragment_category" />
 
     <fragment
         android:id="@+id/navigation_notifications"

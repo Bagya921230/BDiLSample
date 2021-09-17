@@ -63,9 +63,19 @@ class BDiLFonts {
                 setTypeface(context, "fonts/roboto_medium.ttf"),
                 R.color.colorBlack
             )
-            BDiLTypoStyle.MEDIUM_PRIMARY_16 -> Triplet<Float, Typeface, Int>(
+            BDiLTypoStyle.MEDIUM_PRIMARY_30 -> Triplet<Float, Typeface, Int>(
                 30.toFloat(),
                 setTypeface(context, "fonts/roboto_bold.ttf"),
+                primaryColor
+            )
+            BDiLTypoStyle.MEDIUM_PRIMARY_16 -> Triplet<Float, Typeface, Int>(
+                16.toFloat(),
+                setTypeface(context, "fonts/roboto_medium.ttf"),
+                primaryColor
+            )
+            BDiLTypoStyle.MEDIUM_PRIMARY_24 -> Triplet<Float, Typeface, Int>(
+                24.toFloat(),
+                setTypeface(context, "fonts/roboto_medium.ttf"),
                 primaryColor
             )
             else -> Triplet<Float, Typeface, Int>(

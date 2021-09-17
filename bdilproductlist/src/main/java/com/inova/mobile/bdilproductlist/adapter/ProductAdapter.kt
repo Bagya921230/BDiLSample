@@ -3,15 +3,13 @@ package com.inova.mobile.bdilproductlist.adapter
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RatingBar
 import androidx.cardview.widget.CardView
-import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.inova.mobile.bdilproductlist.R
@@ -22,15 +20,21 @@ import com.inova.mobile.bdilproductlist.prefs
 import com.inova.mobile.bdilproductlist.typhography.BDiLTypoStyle
 import java.util.*
 
+
 class ProductAdapter(
-    private val dataSet: ArrayList<AdapterModel>,
-    var mContext: Context,
-    private val productClickListener: ProductOnClickListener
+    private val context: Context,
+    private val dataSet: ArrayList<AdapterModel>?,
+    private val clickListener: ProductOnClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
-    var total_types: Int
+
+    private val mDataSet: ArrayList<AdapterModel>?
+    private val mContext: Context
+    private val productOnClickListener: ProductOnClickListener
 
     init {
-        total_types = dataSet.size
+        this.mDataSet = dataSet
+        this.mContext = context
+        this.productOnClickListener = clickListener
     }
 
     class TypeAViewHolder(itemView: View) :
@@ -106,7 +110,7 @@ class ProductAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (dataSet[position].type) {
+        return when (dataSet?.get(position)?.type) {
             0 -> AdapterModel.TYPE_A
             1 -> AdapterModel.TYPE_B
             else -> -1
@@ -114,9 +118,9 @@ class ProductAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, listPosition: Int) {
-        val product = dataSet[listPosition]
+        val product = dataSet?.get(listPosition)
 
-        when (product.type) {
+        when (product?.type) {
             AdapterModel.TYPE_A -> {
                 (holder as TypeAViewHolder?)!!.name.text = product.data.name
                 (holder as TypeAViewHolder?)!!.price.text = product.data.price
@@ -128,10 +132,10 @@ class ProductAdapter(
                 (holder as TypeAViewHolder?)!!.btnBgView.setCardBackgroundColor(prefs.primaryColorPref)
                 setTypeAFonts(holder)
                 (holder as TypeAViewHolder?)!!.itemView.setOnClickListener {
-                    productClickListener.onItemClickListener(product.data)
+                    productOnClickListener.onItemClickListener(product.data)
                 }
                 (holder as TypeAViewHolder?)!!.btnBgView.setOnClickListener {
-                    productClickListener.onBuyClickListener(product.data)
+                    productOnClickListener.onBuyClickListener(product.data)
                 }
             }
             AdapterModel.TYPE_B -> {
@@ -145,13 +149,21 @@ class ProductAdapter(
                 (holder as TypeBViewHolder?)!!.btnBgView.setBackgroundColor(prefs.primaryColorPref)
                 setTypeBFonts(holder)
                 (holder as TypeBViewHolder?)!!.itemView.setOnClickListener {
-                    productClickListener.onItemClickListener(product.data)
+                    productOnClickListener.onItemClickListener(product.data)
                 }
-                (holder as TypeBViewHolder?)!!.btnBgView.setOnClickListener {
-                    productClickListener.onBuyClickListener(product.data)
-                }
+
+
+                (holder as TypeBViewHolder?)!!.itemView.layoutParams.width = (context.resources.displayMetrics.widthPixels - 140)/2
+                    (holder as TypeBViewHolder?)!!.btnBgView.setOnClickListener {
+                        productOnClickListener.onBuyClickListener(product.data)
+                    }
             }
         }
+    }
+
+    fun Int.pixelsToDpInt(context: Context):Int{
+        return this / (context.resources
+            .displayMetrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT)
     }
 
     fun setTypeAFonts(holder: TypeAViewHolder) {
@@ -159,7 +171,7 @@ class ProductAdapter(
         holder.price.set(mContext, BDiLTypoStyle.REGULAR_GRAY_14)
         holder.regularPrice.set(mContext, BDiLTypoStyle.REGULAR_GRAY_14)
         holder.regularPrice.setPaintFlags(holder.regularPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
-        holder.buyNowTv.set(mContext,BDiLTypoStyle.MEDIUM_WHITE_16)
+        holder.buyNowTv.set(mContext, BDiLTypoStyle.MEDIUM_WHITE_16)
     }
 
     fun setTypeBFonts(holder: TypeBViewHolder) {
@@ -168,12 +180,12 @@ class ProductAdapter(
         holder.regularPrice.set(mContext, BDiLTypoStyle.REGULAR_GRAY_14)
         holder.rating.set(mContext, BDiLTypoStyle.REGULAR_PRIMARY_10)
         holder.regularPrice.setPaintFlags(holder.regularPrice.getPaintFlags() or Paint.STRIKE_THRU_TEXT_FLAG)
-        holder.buyNowTv.set(mContext,BDiLTypoStyle.MEDIUM_WHITE_16)
+        holder.buyNowTv.set(mContext, BDiLTypoStyle.MEDIUM_WHITE_16)
         holder.starImageView.setColorFilter(prefs.primaryColorPref, PorterDuff.Mode.SRC_IN)
     }
 
     override fun getItemCount(): Int {
-        return dataSet.size
+        return dataSet?.size ?: 0
     }
 
 }

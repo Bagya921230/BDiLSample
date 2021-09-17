@@ -8,4 +8,6 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
 
+    <color name="colorDarkOverlay">#80000000</color>
+
 </resources>

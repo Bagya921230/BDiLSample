@@ -1,18 +1,18 @@
 package com.inova.mobile.bdilproductlist
 
-import android.R.attr
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.inova.mobile.bdilproductlist.adapter.ProductAdapter
+import com.inova.mobile.bdilproductlist.adapter.SectionAdapter
 import com.inova.mobile.bdilproductlist.listener.ProductOnClickListener
 import com.inova.mobile.bdilproductlist.model.AdapterModel
 import com.inova.mobile.bdilproductlist.model.Product
+import com.inova.mobile.bdilproductlist.model.SectionModel
 
 
 class ProductListBasic : LinearLayout,ProductOnClickListener {
@@ -25,7 +25,7 @@ class ProductListBasic : LinearLayout,ProductOnClickListener {
     private lateinit var productList: ArrayList<AdapterModel>
     /** Core Components */
     var productRecyclerView: RecyclerView? = null
-    var adapter: ProductAdapter? = null
+    var adapter: SectionAdapter? = null
 
     /** Attributes  */
     var viewType: Int? = 0
@@ -86,8 +86,11 @@ class ProductListBasic : LinearLayout,ProductOnClickListener {
 
         productRecyclerView = findViewById<RecyclerView>(R.id.productRv);
         setAdapterSettings(viewType!!)
-        setLayoutManager(layoutManager!!)
-        setLinearLayoutDirection(layoutDirection!!)
+        val linearLayoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        productRecyclerView?.layoutManager = linearLayoutManager
+        //setLayoutManager(layoutManager!!)
+        //setLinearLayoutDirection(layoutDirection!!)
         productRecyclerView?.adapter = adapter
 
         check(!context.isRestricted) {
@@ -98,18 +101,18 @@ class ProductListBasic : LinearLayout,ProductOnClickListener {
         arr.recycle()
     }
 
-    fun setAdapterSettings(itemType: Int) {
-        //TODO: Get the list from API
-        productList = ArrayList()
+    private fun setAdapterSettings(itemType: Int){
+        val sections = ArrayList<SectionModel>()
+        val productList = ArrayList<AdapterModel>()
         productList.add(
             AdapterModel(
                 itemType,
                 Product(
-                    "Cellulite Duo",
-                    "\$65.00",
-                    "\$76.45",
-                    "https://cdn.shopify.com/s/files/1/1705/3837/products/cellulite-duo_540x.jpg?v=1620913657",
-                    4
+                    "Black Leather Jacket",
+                    "\$600.00",
+                    "\$630.00",
+                    "https://image.freepik.com/free-photo/young-stylish-guy-glasses-black-leather-jacket-with-phone-glass-background_78826-3160.jpg",
+                    5
                 )
             )
         )
@@ -117,10 +120,10 @@ class ProductListBasic : LinearLayout,ProductOnClickListener {
             AdapterModel(
                 itemType,
                 Product(
-                    "Exfoliation Duo",
-                    "\$35.00",
-                    "\$59.90",
-                    "https://cdn.shopify.com/s/files/1/1705/3837/products/exfoliation-duo_a41146fc-3d83-497c-9ee0-bce02abc811b_540x.jpg?v=1620915557",
+                    "Blue Maxi Dress",
+                    "\$400.00",
+                    "\$450.00",
+                    "https://image.freepik.com/free-photo/elegant-pretty-woman-wearing-fashionable-trendy-blue-maxi-dress-posing-city-park_291049-195.jpg",
                     3
                 )
             )
@@ -129,10 +132,10 @@ class ProductListBasic : LinearLayout,ProductOnClickListener {
             AdapterModel(
                 itemType,
                 Product(
-                    "Organic Coffee Scrub",
-                    "\$19.95",
-                    "\$39.95",
-                    "https://cdn.shopify.com/s/files/1/1705/3837/products/200g-organic-coffee-scrub_6d2d5e66-9066-4f5c-b494-d774ee43f755_540x.jpg?v=1620873384",
+                    "Pink Boardshorts",
+                    "\$200",
+                    "\$250",
+                    "https://image.freepik.com/free-photo/happy-professional-female-surfer-wears-boardshorts-has-positive-smile-slender-legs_273609-17784.jpg",
                     2
                 )
             )
@@ -141,54 +144,65 @@ class ProductListBasic : LinearLayout,ProductOnClickListener {
             AdapterModel(
                 itemType,
                 Product(
-                    "Gua Sha Duo",
-                    "\$89.00",
-                    "\$109.00",
-                    "https://cdn.shopify.com/s/files/1/1705/3837/products/gua-sha-duo_d62d941d-c292-46d0-82cf-93efc098c83e_540x.jpg?v=1620874886",
+                    "Red Knitted Sweater",
+                    "\$300.00",
+                    "\$350.00",
+                    "https://image.freepik.com/free-photo/pretty-lady-with-white-smile-standing-beach-near-lake-mountains-covered-with-snow-wearing-red-knitted-sweater-blue-jeans-blonde-long-hairstyle-no-makeup_343629-65.jpg",
                     5
                 )
             )
         )
 
-        adapter = ProductAdapter(productList, context, this)
+        val section1 = SectionModel()
+        section1.title = "Best Sales"
+        section1.items.addAll(productList)
+
+        sections.add(section1)
+
+        val section2 = SectionModel()
+        section2.title = "Back In Stock"
+        section2.items.addAll(productList)
+
+        sections.add(section2)
+        adapter = SectionAdapter(context, sections, this,layoutManager,layoutDirection)
 
     }
 
-    fun setLayoutManager(mLayoutManager: Int) {
-
-        if (mLayoutManager == 1) {
-            val gridLayoutManager = GridLayoutManager(context, 2)
-            productRecyclerView?.layoutManager = gridLayoutManager
-        } else {
-            if (layoutDirection == 0) {
-
-                val linearLayoutManager =
-                    LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-                productRecyclerView?.layoutManager = linearLayoutManager
-            } else {
-
-                val linearLayoutManager =
-                    LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                productRecyclerView?.layoutManager = linearLayoutManager
-            }
-        }
-    }
-
-    fun setLinearLayoutDirection(mDirection: Int) {
-        if (layoutManager == 0) {
-            if (mDirection == 0) {
-
-                val linearLayoutManager =
-                    LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-                productRecyclerView?.layoutManager = linearLayoutManager
-            } else {
-
-                val linearLayoutManager =
-                    LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                productRecyclerView?.layoutManager = linearLayoutManager
-            }
-        }
-    }
+//    fun setLayoutManager(mLayoutManager: Int) {
+//
+//        if (mLayoutManager == 1) {
+//            val gridLayoutManager = GridLayoutManager(context, 2)
+//            productRecyclerView?.layoutManager = gridLayoutManager
+//        } else {
+//            if (layoutDirection == 0) {
+//
+//                val linearLayoutManager =
+//                    LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+//                productRecyclerView?.layoutManager = linearLayoutManager
+//            } else {
+//
+//                val linearLayoutManager =
+//                    LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+//                productRecyclerView?.layoutManager = linearLayoutManager
+//            }
+//        }
+//    }
+//
+//    fun setLinearLayoutDirection(mDirection: Int) {
+//        if (layoutManager == 0) {
+//            if (mDirection == 0) {
+//
+//                val linearLayoutManager =
+//                    LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+//                productRecyclerView?.layoutManager = linearLayoutManager
+//            } else {
+//
+//                val linearLayoutManager =
+//                    LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+//                productRecyclerView?.layoutManager = linearLayoutManager
+//            }
+//        }
+//    }
 
     override fun onItemClickListener(data: Product) {
         if(appOnClickListener != null) {
