@@ -17,9 +17,9 @@
         android:layout_height="match_parent"
         android:background="@drawable/tag_circle_background">
 
-        <com.inova.mobile.bdilproductlist.components.BDiLTextView
+        <com.inova.mobile.bdilshopify.ui.components.BDiLTextView
             android:id="@+id/txtChipName"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
