@@ -13,15 +13,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.inova.mobile.bdilproductlist.model.Product
 import com.inova.mobile.bdilshopify.R
 import com.inova.mobile.bdilshopify.model.Category
+import com.inova.mobile.bdilshopify.model.Size
 import com.inova.mobile.bdilshopify.typhography.BDiLTypoStyle
 import com.inova.mobile.bdilshopify.ui.components.BDiLTextView
 import com.inova.mobile.bdilshopify.ui.home.HomeViewModel
 import com.inova.mobile.bdilshopify.ui.home.callback.CategoryCallback
 import com.inova.mobile.bdilshopify.ui.product_details.adapter.ProductDetailsAdapter
+import com.inova.mobile.bdilshopify.ui.product_details.adapter.SizeDetailsAdapter
+import com.jaredrummler.materialspinner.MaterialSpinner
+import kotlinx.android.synthetic.main.fragment_product_details.*
 
-class ProductDetailsFragment : Fragment(), CategoryCallback {
+class ProductDetailsFragment : Fragment(), CategoryCallback{
     lateinit var productList: Category
     lateinit var brandRv: RecyclerView
+    lateinit var sizeRv: RecyclerView
     lateinit var nameTv: BDiLTextView
     lateinit var descriptionTv: BDiLTextView
     lateinit var noOfLikesTv: BDiLTextView
@@ -32,6 +37,7 @@ class ProductDetailsFragment : Fragment(), CategoryCallback {
     lateinit var rlTopBar: RelativeLayout
     lateinit var llDetails: LinearLayout
     lateinit var llComments: LinearLayout
+    lateinit var spColor: MaterialSpinner
 
     private lateinit var ProductDetailsViewModel: HomeViewModel
 
@@ -51,16 +57,41 @@ class ProductDetailsFragment : Fragment(), CategoryCallback {
 
         val root = inflater.inflate(R.layout.fragment_product_details, container, false)
         brandRv = root.findViewById(R.id.brandRv)
+        sizeRv = root.findViewById(R.id.sizeRW)
+//        spColor = root.findViewByIdndViewById(R.id.spColor)
         configureCategories()
-
+//        configureSpinner();
+        configureSize();
         return root
     }
 
-//    private fun animateViews() {
-//        AnimationUtil.animateView(rlTopBar, false, 500, 1000)
-//        AnimationUtil.animateView(llDetails, true, 500, 1000)
-//        AnimationUtil.animateView(bottomSheet, true, 500, 1000)
-//    }
+    private fun configureSpinner() {
+        val colorList: MutableList<String> = java.util.ArrayList()
+        colorList.add("Space Gray and Silk White")
+        colorList.add("Space Gray")
+        colorList.add("Silk White")
+        spColor.setItems<String>(colorList)
+    }
+
+    fun configureSize() {
+        var sizeList = ArrayList<Size>()
+        sizeList.add(Size("XL"));
+        sizeList.add(Size("M"));
+        sizeList.add(Size("S"));
+        sizeList.add(Size("S"));
+        sizeList.add(Size("S"));
+        sizeList.add(Size("S"));
+
+        val linearLayoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+
+        sizeRv?.layoutManager = linearLayoutManager
+        var adapter = SizeDetailsAdapter(sizeList, requireActivity(), this)
+        sizeRv.adapter = adapter
+
+        adapter.notifyDataSetChanged()
+
+    }
 
     fun configureCategories() {
         var categoryList = ArrayList<Category>()
