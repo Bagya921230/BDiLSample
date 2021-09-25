@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cvChip"
-    android:layout_width="wrap_content"
-    android:layout_height="60dp"
-    android:layout_margin="10dp"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
     android:elevation="0dp"
-    android:padding="10dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="15dp"
-    app:cardElevation="0dp">
+    app:cardCornerRadius="5dp"
+    app:cardElevation="0dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/tag_circle_background">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/tag_circle_background">
-
-        <com.inova.mobile.bdilshopify.ui.components.BDiLTextView
+        <TextView
             android:id="@+id/txtChipName"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20sp"
             android:text="Chip"
-            android:layout_margin="10dp"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/orangePink"/>
 
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</RelativeLayout>
